@@ -1,0 +1,65 @@
+server:
+  port: 8201
+
+zimug:
+  jwt:
+    enabled: true
+    secret: fjkfaf;afa
+    expiration: 3600000
+    header: JWTHeaderName
+    userParamName: username
+    pwdParamName: password
+    useDefaultController: true
+    corsAllowedOrigins:
+      - http://localhost:8080
+      - http://127.0.0.1:8080
+    corsAllowedMethods:
+      - GET
+      - POST
+    devOpeningURI:
+      - /file/upload   #文件上传示例API
+    permitAllURI:
+      - /2021/**       # 上传之后的文件访问根路径
+
+
+
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    url: jdbc:mysql://localhost:3306/devicedb?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: shaoyu12
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cache:
+    type: ehcache
+    ehcache:
+      config: classpath:/ehcache.xml
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${file.local.upload-path}
+
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  level:
+    root: info
+    com.zimug.dongbb.server.jwt: debug
+  pattern:
+    console: '%red(%d{yyyy-MM-dd HH:mm:ss}) %green([%thread]) %highlight(%-5level) %boldMagenta(%logger{10}) - %cyan(%msg%n)'
+    file: '%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger : %msg%n'
+
+file:
+  local:
+    enabled: true
+    upload-path: D:/data/   # 本地存储根路径
+  #minio:
+  #  enabled: false
+  #  endpoint: http://192.168.161.3:9000
+  #  accessKey: zimug
+  #  secretKey: zimug-boot-launch
+  #  bucketName: dongbb-files

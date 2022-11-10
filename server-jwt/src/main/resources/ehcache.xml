@@ -1,0 +1,33 @@
+<ehcache>
+  <diskStore path="java.io.tmpdir/cache_dong"/>
+  <defaultCache
+    maxElementsInMemory="10000"
+    eternal="false"
+    timeToIdleSeconds="120"
+    timeToLiveSeconds="120"
+    overflowToDisk="false"
+    diskPersistent="false"
+    diskExpiryThreadIntervalSeconds="120"
+  />
+  <cache name="user_detail"
+         maxElementsInMemory="10000"
+         eternal="true"
+         overflowToDisk="true"
+         diskPersistent="true"
+         diskExpiryThreadIntervalSeconds="600"/>
+  <cache name="role_codes"
+         maxElementsInMemory="10000"
+         eternal="true"
+         timeToIdleSeconds="120"
+         overflowToDisk="true"
+         diskPersistent="true"
+         diskExpiryThreadIntervalSeconds="600"/>
+  <cache name="api_urls"
+         maxElementsInMemory="10000"
+         eternal="true"
+         timeToIdleSeconds="120"
+         overflowToDisk="true"
+         diskPersistent="true"
+         diskExpiryThreadIntervalSeconds="600"/>
+
+</ehcache>
