@@ -24,6 +24,13 @@ public class AjaxResponse {
     return resultBean;
   }
 
+  public static AjaxResponse error(String message){
+    AjaxResponse resultBean = new AjaxResponse();
+    resultBean.setIsok(false);
+    resultBean.setMessage(message);
+    return resultBean;
+  }
+
   //请求出现异常时的响应数据封装
   public static AjaxResponse error(CustomExceptionType customExceptionType,
                                    String errorMessage) {

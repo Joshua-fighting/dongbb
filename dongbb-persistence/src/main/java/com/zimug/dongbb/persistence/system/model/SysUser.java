@@ -3,6 +3,7 @@ package com.zimug.dongbb.persistence.system.model;
 import com.zimug.dongbb.persistence.system.common.BaseColumns;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 import java.util.Date;
 
@@ -11,6 +12,7 @@ import java.util.Date;
  * @author 字母哥
  */
 @Data
+@Accessors(chain = true)
 @EqualsAndHashCode(callSuper = true)
 public class SysUser extends BaseColumns {
     private Long id;

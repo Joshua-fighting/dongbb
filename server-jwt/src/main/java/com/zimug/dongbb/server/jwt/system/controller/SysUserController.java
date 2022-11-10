@@ -2,13 +2,19 @@ package com.zimug.dongbb.server.jwt.system.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.zimug.commons.exception.AjaxResponse;
+import com.zimug.commons.exception.CustomException;
+import com.zimug.dongbb.persistence.system.mapper.SysUserMapper;
 import com.zimug.dongbb.persistence.system.model.SysUser;
 import com.zimug.dongbb.persistence.system.model.SysUserOrg;
+import com.zimug.dongbb.server.jwt.system.model.RegisterDto;
 import com.zimug.dongbb.server.jwt.system.service.SysUserService;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/sysuser")
@@ -16,6 +22,22 @@ public class SysUserController {
 
   @Resource
   private SysUserService sysuserService;
+
+  @Autowired
+  SysUserMapper sysUserMapper;
+
+  //注册用户
+  @PostMapping("register")
+  public AjaxResponse register(@RequestBody RegisterDto registerDto){
+      if(Objects.isNull(registerDto)|| StringUtils.isBlank(registerDto.getEmail())
+        ||StringUtils.isBlank(registerDto.getPassword())||StringUtils.isBlank(registerDto.getUsername())){
+        AjaxResponse.error("参数不能空");
+      }
+      //注册用户，此时还未分配权限
+      //sysUserMapper.insert();
+      return AjaxResponse.success();
+  }
+
 
   //根据登录用户名查询用户信息
   @GetMapping(value = "/info")

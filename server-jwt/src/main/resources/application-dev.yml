@@ -18,7 +18,7 @@ zimug:
       - POST
     devOpeningURI:
       - /file/upload   #文件上传示例API
-    permitAllURI:
+    permitAllURI:       #不需要JWT授权就可以访问的接口路径
       - /2021/**       # 上传之后的文件访问根路径
 
 

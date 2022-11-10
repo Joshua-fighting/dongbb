@@ -11,6 +11,8 @@ import com.zaxxer.hikari.HikariDataSource;
 
 
 import org.junit.jupiter.api.Test;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -84,6 +86,13 @@ public class ScrewTest {
             .build();
     //执行生成
     new DocumentationExecute(config).execute();
-
   }
+
+  @Test
+  public void generatePwd(){
+    PasswordEncoder encoder = new BCryptPasswordEncoder();
+    String result = encoder.encode("shaoyu12");
+    System.out.println(result);
+  }
+
 }
